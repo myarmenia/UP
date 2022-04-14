@@ -21,4 +21,16 @@ class ProfileController extends Controller
     {
         return view('profile/user/course/create-author');
     }
+
+    public function createAuthorTask()
+    {
+        return view('profile/user/course/create-author-task');
+    }
+
+    public function createAuthorLesson()
+    {
+        return view('profile/user/course/create-author-lesson');
+    }
+
+
 }

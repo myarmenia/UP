@@ -30,8 +30,9 @@ Route::group(['middleware' => ['auth'],'prefix' => 'profile'], function() {
     Route::get('/', [ProfileController::class, 'index'])->name('profile');
     Route::get('/settings', [ProfileController::class, 'settings'])->name('profileSettings');
     Route::group(['prefix' => 'course'], function() {
-        Route::get('/create_author', [ProfileController::class, 'createAuthor'])->name('profileCreateAuthor');
-
+        Route::get('/create_author', [ProfileController::class, 'createAuthor'])->name('createAuthor');
+        Route::get('/create_author_task', [ProfileController::class, 'createAuthorTask'])->name('createAuthorTask');
+        Route::get('/create_author_lesson', [ProfileController::class, 'createAuthorLesson'])->name('createAuthorLesson');
     });
 });
 

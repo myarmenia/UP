@@ -1,7 +1,7 @@
 @extends('profile.user.layouts.app')
 
 @section('title')
-Вверх | Личный кабинет
+Вверх | Личный кабинет | Создать курс
 @endsection
 
 @section('content')
