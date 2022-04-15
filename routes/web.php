@@ -24,16 +24,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 
 Route::group(['middleware' => ['auth', 'verified'],'prefix' => 'profile'], function() {
     Route::get('/', [ProfileController::class, 'index'])->name('profile');
     Route::get('/settings', [ProfileController::class, 'settings'])->name('profileSettings');
     Route::group(['prefix' => 'course'], function() {
-        Route::get('/create_author', [ProfileController::class, 'createAuthor'])->name('createAuthor');
-        Route::get('/create_author_task', [ProfileController::class, 'createAuthorTask'])->name('createAuthorTask');
-        Route::get('/create_author_lesson', [ProfileController::class, 'createAuthorLesson'])->name('createAuthorLesson');
+    Route::get('/create_author', [ProfileController::class, 'createAuthor'])->name('createAuthor');
+    Route::get('/create_author_task', [ProfileController::class, 'createAuthorTask'])->name('createAuthorTask');
+    Route::get('/create_author_lesson', [ProfileController::class, 'createAuthorLesson'])->name('createAuthorLesson');
     });
 });
 
@@ -46,12 +44,5 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('get_file',[FileUploadService::class,'get_file'])->name('get_file');
 
-Route::get('/email/verify', function () {
-    return view('auth.verify');
-})->middleware(['auth'])->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/profile');
-})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
