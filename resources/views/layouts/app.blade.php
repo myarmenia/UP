@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('style/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/all.css') }}">
 
  @yield('style')
 </head>

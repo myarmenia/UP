@@ -7,6 +7,7 @@ use  App\Http\Controllers\PermissionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Services\FileUploadService;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Services\FileUploadService;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes(['verify'=>true]);
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,7 +27,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::group(['middleware' => ['auth'],'prefix' => 'profile'], function() {
+Route::group(['middleware' => ['auth', 'verified'],'prefix' => 'profile'], function() {
     Route::get('/', [ProfileController::class, 'index'])->name('profile');
     Route::get('/settings', [ProfileController::class, 'settings'])->name('profileSettings');
     Route::group(['prefix' => 'course'], function() {
@@ -45,3 +46,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('get_file',[FileUploadService::class,'get_file'])->name('get_file');
 
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware(['auth'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/profile');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
