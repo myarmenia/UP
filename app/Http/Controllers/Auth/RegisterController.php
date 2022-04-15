@@ -58,6 +58,9 @@ class RegisterController extends Controller
             'description' => ['required','min:8'],
             'role' => ['required','string'],
             'avatar' => ['nullable','image'],
+            'personal_data' => ['required'],
+            'user_agreement' => ['required']
+
         ]);
     }
 
