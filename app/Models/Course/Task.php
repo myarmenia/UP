@@ -6,20 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\File;
 
-class UserCourse extends Model
+class Task extends Model
 {
     use HasFactory;
 
-    public $table = 'user_courses';
-
-    protected $fillable = [
-        'user_id',
+    public $fillable = [
+        'lesson_id',
         'name',
-        'category_name',
-        'module_name',
-        'description',
-        'extended_desc',
+        'description'
     ];
+
 
     public function file()
     {
