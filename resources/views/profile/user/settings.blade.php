@@ -24,143 +24,141 @@
             <a href="#tab2" class="cabinet-tabs__nav-link">Изменить пароль</a>
         </div>
         <div class="cabinet-tabs__content">
+            <form action="" class="">
+                <div id="tab1" class="cabinet-tabs__content-inner _active">
+                    <div class="cabinet-settings__left">
+                        <h3 class="cabinet-settings__subtitle text">Данные профиля</h3>
 
-            <div id="tab1" class="cabinet-tabs__content-inner _active">
-                <div class="cabinet-settings__left">
-                    <h3 class="cabinet-settings__subtitle text">Данные профиля</h3>
+                        <div class="cabinet-settings__photo">
+                            <div class="cabinet-settings__photo-inner"><img src="img/cabinet-user-photo.jpg"
+                                    alt="user"></div>
+                            <label class="cabinet-settings__photo-file text">
+                                <input type="file">
+                                <span>Выберите файл для загрузки</span>
+                            </label>
+                        </div>
+                        <label class="cabinet-settings__input input">
+                            <input type="text" placeholder="ФИО" value="{{ Auth::user()->name }}">
+                        </label>
+                        <label class="cabinet-settings__input input">
+                            <input type="text" placeholder="Email" value="{{ Auth::user()->email }}">
+                        </label>
+                        <label class="cabinet-settings__input input">
+                            <input type="text" placeholder="Телефон" value="{{ Auth::user()->phone_number ? Auth::user()->phone_number : '' }}">
+                        </label>
 
-                    <div class="cabinet-settings__photo">
-                        <div class="cabinet-settings__photo-inner"><img src="img/cabinet-user-photo.jpg"
-                                alt="user"></div>
-                        <label class="cabinet-settings__photo-file text">
-                            <input type="file">
-                            <span>Выберите файл для загрузки</span>
-                        </label>
-                    </div>
-                    <label class="cabinet-settings__input input">
-                        <input type="text" placeholder="ФИО">
-                    </label>
-                    <label class="cabinet-settings__input input">
-                        <input type="text" placeholder="Email">
-                    </label>
-                    <label class="cabinet-settings__input input">
-                        <input type="text" placeholder="Телефон">
-                    </label>
+                        <div class="cabinet-settings__social-input">
+                            <div class="cabinet-settings__social-icon social-link">
+                                <svg>
+                                    <use xlink:href="#_icon-inst"></use>
+                                </svg>
+                            </div>
+                            <label class="cabinet-settings__social-name">
+                                <input type="text" placeholder="Имя пользователя">
+                            </label>
+                            <div class="cabinet-settings__social-btns">
+                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
+                                <div class="cabinet-settings__btn-add"></div>
+                            </div>
+                        </div>
+                        <div class="cabinet-settings__social-input">
+                            <div class="cabinet-settings__social-icon social-link">
+                                <svg>
+                                    <use xlink:href="#_icon-tiktok"></use>
+                                </svg>
+                            </div>
+                            <label class="cabinet-settings__social-name">
+                                <input type="text" placeholder="Имя пользователя">
+                            </label>
+                            <div class="cabinet-settings__social-btns">
+                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
+                                <div class="cabinet-settings__btn-add"></div>
+                            </div>
+                        </div>
+                        <div class="cabinet-settings__social-input">
+                            <div class="cabinet-settings__social-icon social-link">
+                                <svg>
+                                    <use xlink:href="#_icon-vk"></use>
+                                </svg>
+                            </div>
+                            <label class="cabinet-settings__social-name">
+                                <input type="text" placeholder="Имя пользователя">
+                            </label>
+                            <div class="cabinet-settings__social-btns">
+                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
+                                <div class="cabinet-settings__btn-add"></div>
+                            </div>
+                        </div>
+                        <div class="cabinet-settings__social-input">
+                            <div class="cabinet-settings__social-icon social-link">
+                                <svg>
+                                    <use xlink:href="#_icon-facebook"></use>
+                                </svg>
+                            </div>
+                            <label class="cabinet-settings__social-name">
+                                <input type="text" placeholder="Имя пользователя">
+                            </label>
+                            <div class="cabinet-settings__social-btns">
+                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
+                                <div class="cabinet-settings__btn-add"></div>
+                            </div>
+                        </div>
+                        <div class="cabinet-settings__social-input">
+                            <div class="cabinet-settings__social-icon social-link">
+                                <svg>
+                                    <use xlink:href="#_icon-ok"></use>
+                                </svg>
+                            </div>
+                            <label class="cabinet-settings__social-name">
+                                <input type="text" placeholder="Имя пользователя">
+                            </label>
+                            <div class="cabinet-settings__social-btns">
+                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
+                                <div class="cabinet-settings__btn-add"></div>
+                            </div>
+                        </div>
 
-                    <div class="cabinet-settings__social-input">
-                        <div class="cabinet-settings__social-icon social-link">
-                            <svg>
-                                <use xlink:href="#_icon-inst"></use>
-                            </svg>
-                        </div>
-                        <label class="cabinet-settings__social-name">
-                            <input type="text" placeholder="Имя пользователя">
+                        <label class="cabinet-settings__dropdown dropdown">
+                            <select>
+                                <option value="">Критерий для подбора наставника</option>
+                                <option value="">1 вариант</option>
+                                <option value="">2 вариант</option>
+                                <option value="">3 вариант</option>
+                            </select>
                         </label>
-                        <div class="cabinet-settings__social-btns">
-                            <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                            <button class="cabinet-settings__btn-add"></button>
-                        </div>
-                    </div>
-                    <div class="cabinet-settings__social-input">
-                        <div class="cabinet-settings__social-icon social-link">
-                            <svg>
-                                <use xlink:href="#_icon-tiktok"></use>
-                            </svg>
-                        </div>
-                        <label class="cabinet-settings__social-name">
-                            <input type="text" placeholder="Имя пользователя">
-                        </label>
-                        <div class="cabinet-settings__social-btns">
-                            <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                            <button class="cabinet-settings__btn-add"></button>
-                        </div>
-                    </div>
-                    <div class="cabinet-settings__social-input">
-                        <div class="cabinet-settings__social-icon social-link">
-                            <svg>
-                                <use xlink:href="#_icon-vk"></use>
-                            </svg>
-                        </div>
-                        <label class="cabinet-settings__social-name">
-                            <input type="text" placeholder="Имя пользователя">
-                        </label>
-                        <div class="cabinet-settings__social-btns">
-                            <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                            <button class="cabinet-settings__btn-add"></button>
-                        </div>
-                    </div>
-                    <div class="cabinet-settings__social-input">
-                        <div class="cabinet-settings__social-icon social-link">
-                            <svg>
-                                <use xlink:href="#_icon-facebook"></use>
-                            </svg>
-                        </div>
-                        <label class="cabinet-settings__social-name">
-                            <input type="text" placeholder="Имя пользователя">
-                        </label>
-                        <div class="cabinet-settings__social-btns">
-                            <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                            <button class="cabinet-settings__btn-add"></button>
-                        </div>
-                    </div>
-                    <div class="cabinet-settings__social-input">
-                        <div class="cabinet-settings__social-icon social-link">
-                            <svg>
-                                <use xlink:href="#_icon-ok"></use>
-                            </svg>
-                        </div>
-                        <label class="cabinet-settings__social-name">
-                            <input type="text" placeholder="Имя пользователя">
-                        </label>
-                        <div class="cabinet-settings__social-btns">
-                            <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                            <button class="cabinet-settings__btn-add"></button>
-                        </div>
-                    </div>
 
-                    <label class="cabinet-settings__dropdown dropdown">
-                        <select>
-                            <option value="">Критерий для подбора наставника</option>
-                            <option value="">1 вариант</option>
-                            <option value="">2 вариант</option>
-                            <option value="">3 вариант</option>
-                        </select>
-                    </label>
-
-                    <a href="#" class="btn-blue _cabinet-btn" data-da=".cabinet-settings__right, 991, last">Сохранить</a>
+                        <a href="#" class="btn-blue _cabinet-btn" data-da=".cabinet-settings__right, 991, last">Сохранить</a>
+                    </div>
+                    <div class="cabinet-settings__right">
+                        <h3 class="cabinet-settings__subtitle text">Информация о вас или вашем проекте</h3>
+                        <label class="cabinet-settings__textarea input">
+                            <textarea>{{ Auth::user()->description }}</textarea>
+                        </label>
+                    </div>
                 </div>
-                <div class="cabinet-settings__right">
-                    <h3 class="cabinet-settings__subtitle text">Информация о вас или вашем проекте</h3>
-                    <label class="cabinet-settings__textarea input">
-                        <textarea>Таким образом консультация с широким активом влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками в отношении поставленных задач. Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности в значительной степени обуславливает создание новых предложений. Товарищи! новая модель организационной деятельности позволяет оценить значение систем
-                            Таким образом консультация с широким активом влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками в отношении поставленных задач. Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности в значительной степени обуславливает создание новых предложений. Товарищи! новая модель организационной деятельности позволяет оценить значение систем </textarea>
-                    </label>
+
+                <div id="tab2" class="cabinet-tabs__content-inner">
+                    {{-- <form action="" class="cabinet-settings__form"> --}}
+                        <label class="cabinet-settings__input input">
+                            <input type="password" placeholder="Старый пароль">
+                            <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
+                        </label>
+                        <a href="#" class="cabinet-settings__link-recovery">Забыли пароль?</a>
+
+                        <label class="cabinet-settings__input input">
+                            <input type="password" placeholder="Новый пароль">
+                            <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
+                        </label>
+                        <label class="cabinet-settings__input input">
+                            <input type="password" placeholder="Повторите пароль">
+                            <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
+                        </label>
+                        <a href="#" class="btn-blue _cabinet-btn" data-modal-link="saved">Сохранить</a>
+                    {{-- </form> --}}
+
+                    <!--  -->
                 </div>
-            </div>
-
-
-
-            <div id="tab2" class="cabinet-tabs__content-inner">
-                <form action="" class="cabinet-settings__form">
-                    <label class="cabinet-settings__input input">
-                        <input type="password" placeholder="Старый пароль">
-                        <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
-                    </label>
-                    <a href="#" class="cabinet-settings__link-recovery">Забыли пароль?</a>
-
-                    <label class="cabinet-settings__input input">
-                        <input type="password" placeholder="Новый пароль">
-                        <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
-                    </label>
-                    <label class="cabinet-settings__input input">
-                        <input type="password" placeholder="Повторите пароль">
-                        <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
-                    </label>
-                    <a href="#" class="btn-blue _cabinet-btn" data-modal-link="saved">Сохранить</a>
-                </form>
-
-                <!--  -->
-            </div>
+            </form>
         </div>
     </div>
 </main>
