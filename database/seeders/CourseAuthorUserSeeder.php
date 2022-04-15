@@ -20,6 +20,7 @@ class CourseAuthorUserSeeder extends Seeder
         $user = User::create([
             'name' => 'CourseAuthor',
             'email' => 'CourseAuthor@gmail.com',
+            'email_verified_at' => date("Y-m-d H:i:s"),
             'password' => bcrypt('12345678')
         ]);
 
