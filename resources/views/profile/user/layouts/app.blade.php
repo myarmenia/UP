@@ -9,7 +9,11 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('style/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+<<<<<<< HEAD
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+=======
     <link rel="stylesheet" href="{{ asset('style/all.css') }}">
+>>>>>>> dev
 
  @yield('style')
 </head>

@@ -5,14 +5,15 @@ namespace App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Test extends Model
+class TestAnswer extends Model
 {
     use HasFactory;
 
+    public $table = 'answers';
+
     protected $fillable = [
-        'name',
-        'description',
-        'time_limit',
-        'lesson_id'
+        'question_id',
+        'answer',
+        'status'
     ];
 }
