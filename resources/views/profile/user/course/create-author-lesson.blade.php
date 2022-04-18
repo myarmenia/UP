@@ -69,7 +69,7 @@
                     <span>Название урока</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Введите текст" name="name">
+                    <input type="text" placeholder="Введите текст" name="name" value="{{ old('name') ?? null }}">
                 </label>
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -101,7 +101,7 @@
                     <span>Имя спикера</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Введите имя" name="speaker_name">
+                    <input type="text" placeholder="Введите имя" name="speaker_name" value="{{ old('speaker_name') ?? null }}">
                 </label>
                 @error('speaker_name')
                     <span class="invalid-feedback" role="alert">
@@ -114,7 +114,9 @@
                     <span>Краткое информация о спикере</span>
                 </div>
                 <label class="course-create__input textarea input">
-                    <textarea placeholder="Введите текст" name="speaker_desc"></textarea>
+                    <textarea placeholder="Введите текст" name="speaker_desc">
+                        {{ old('speaker_desc') ?? null }}
+                    </textarea>
                 </label>
                 @error('speaker_desc')
                     <span class="invalid-feedback" role="alert">
@@ -146,7 +148,7 @@
                     <span>Ссылка на видео</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Вставьте ссылку" name="video_path">
+                    <input type="text" placeholder="Вставьте ссылку" name="video_path" value="{{ old('video_path') ?? null }}">
                 </label>
                 @error('video_path')
                     <span class="invalid-feedback" role="alert">
@@ -159,7 +161,7 @@
                     <span>Код для вставки видео</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Вставьте код" name="video_code">
+                    <input type="text" placeholder="Вставьте код" name="video_code" value="{{ old('video_code') ?? null }}">
                 </label>
                 @error('video_code')
                     <span class="invalid-feedback" role="alert">
@@ -185,7 +187,7 @@
                     <span>Инвайт ссылка для <span class="author">автора</span></span>
                 </div>
                 <label class="course-create__input input link">
-                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_author">
+                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_author" value="{{ old('invite_link_author') ?? null }}">
                     <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
                     <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
@@ -195,7 +197,7 @@
                     <span>Инвайт ссылка для <span class="mentor">наставника</span></span>
                 </div>
                 <label class="course-create__input input link">
-                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_mentor">
+                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_mentor" value="{{ old('invite_link_mentor') ?? null }}">
                     <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
                     <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
@@ -205,7 +207,7 @@
                     <span>Инвайт ссылка для <span class="student">обучающегося</span></span>
                 </div>
                 <label class="course-create__input input link">
-                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_student">
+                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_student" value="{{ old('invite_link_student') ?? null }}">
                     <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
                     <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
@@ -222,7 +224,7 @@
                     <span>Дата публикации видео</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="time" placeholder="Введите дату" name="publish_date_video">
+                    <input type="time" placeholder="Введите дату" name="publish_date_video" value="{{ old('publish_date_video') ?? null }}">
                 </label>
                 @error('publish_date_video')
                 <span class="invalid-feedback" role="alert">
@@ -235,7 +237,7 @@
                     <span>Время публикации видео (по МСК)</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="time" placeholder="ЧЧ:ММ" name="publish_date_video_MSK">
+                    <input type="time" placeholder="ЧЧ:ММ" name="publish_date_video_MSK" value="{{ old('publish_date_video_MSK') ?? null }}">
                 </label>
                 @error('publish_date_video_MSK')
                 <span class="invalid-feedback" role="alert">
