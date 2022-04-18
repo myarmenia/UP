@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('style/style.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('style/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/notific.css') }}">
 
  @yield('style')
 </head>
@@ -217,7 +218,6 @@
                 </li>
             </ul>
         </aside>
-
         @yield('content')
     </div>
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>

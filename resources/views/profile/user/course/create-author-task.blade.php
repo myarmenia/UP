@@ -77,7 +77,7 @@
                             <span>Название задания</span>
                         </div>
                         <label class="course-create__input input">
-                            <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror>
+                            <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror value="{{ old('name') ?? null }}">
                         </label>
                     </div>
                     <div class="course-create__row">
@@ -87,7 +87,9 @@
                         <div class="course-create__editor">
                             <!-- тут редактор -->
                             <label class="course-create__input textarea input">
-                                <textarea placeholder="Введите текст" name="description" @error('description')is-invalid @enderror></textarea>
+                                <textarea placeholder="Введите текст" name="description" @error('description')is-invalid @enderror>
+                                   {{ old('description') ?? null }}
+                                </textarea>
                             </label>
                         </div>
                     </div>
@@ -126,7 +128,7 @@
                                 <span>Ограничения времени на повторную сдачу</span>
                             </div>
                             <label class="course-create__input input">
-                                <input type="time" placeholder="ММ:СС" name="time_limit">
+                                <input type="time" placeholder="ММ:СС" name="time_limit" value="{{ old('time_limit') ?? null }}">
                             </label>
                             @error('time_limit')
                                     <span class="invalid-feedback" role="alert">
