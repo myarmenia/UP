@@ -32,6 +32,8 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified'],'prefix' => 'profile'], function() {
     Route::get('/', [ProfileController::class, 'index'])->name('profile');
     Route::get('/settings', [ProfileController::class, 'settings'])->name('profileSettings');
+    Route::put('/update_profile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/update_password', [ProfileController::class, 'updatePassword'])->name('updatePassword');
     Route::group(['prefix' => 'course'], function() {
     Route::get('/create_author', [ProfileController::class, 'createAuthor'])->name('createAuthor');
     Route::post('/create_author', [UserCourseController::class, 'store'])->name('authorStore');

@@ -46,6 +46,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function user_social_link()
+    {
+        return $this->hasMany(UserSocialLink::class,'user_id','id');
+    }
+
     public function isAdmin(){
         return $this->hasRole('Admin');
     }

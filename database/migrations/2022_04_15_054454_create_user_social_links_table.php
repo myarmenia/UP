@@ -15,10 +15,15 @@ return new class extends Migration
     {
         Schema::create('user_social_links', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_is');
+            $table->unsignedBigInteger('user_id');
             $table->string('type');
             $table->string('url');
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
         });
     }
 
