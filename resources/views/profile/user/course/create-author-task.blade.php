@@ -77,7 +77,7 @@
                             <span>Название задания</span>
                         </div>
                         <label class="course-create__input input">
-                            <input type="text" placeholder="Введите текст" name="name">
+                            <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror>
                         </label>
                     </div>
                     <div class="course-create__row">
@@ -87,7 +87,7 @@
                         <div class="course-create__editor">
                             <!-- тут редактор -->
                             <label class="course-create__input textarea input">
-                                <textarea placeholder="Введите текст" name="description"></textarea>
+                                <textarea placeholder="Введите текст" name="description" @error('description')is-invalid @enderror></textarea>
                             </label>
                         </div>
                     </div>
@@ -113,8 +113,13 @@
                                 <span>Название теста</span>
                             </div>
                             <label class="course-create__input input">
-                                <input type="text" placeholder="Введите текст" name="name">
+                                <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror>
                             </label>
+                            @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="course-create__row _time">
                             <div class="course-create__label">
@@ -123,6 +128,11 @@
                             <label class="course-create__input input">
                                 <input type="time" placeholder="ММ:СС" name="time_limit">
                             </label>
+                            @error('time_limit')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="course-create__row _big">
@@ -132,6 +142,11 @@
                         <label class="course-create__input textarea input">
                             <textarea placeholder="Введите текст" name="description"></textarea>
                         </label>
+                        @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                     </div>
                     <div class="answ_quests">
                         <div class="course-create__test">
