@@ -81,11 +81,11 @@
 
 
                             <label class="login__dropdown dropdown">
-                                <select>
+                                <select name="criterion">
                                     <option selected value="">Выбор критерия для подбора наставника</option>
-                                    <option value="">Категория №1</option>
-                                    <option value="">Категория №2</option>
-                                    <option value="">Категория №3</option>
+                                    <option value="Категория №1">Категория №1</option>
+                                    <option value="Категория №2">Категория №2</option>
+                                    <option value="Категория №3">Категория №3</option>
                                 </select>
                             </label>
 
