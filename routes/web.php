@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', 'verified'],'prefix' => 'profile'], funct
     Route::get('/create_author_task', [ProfileController::class, 'createAuthorTask'])->name('createAuthorTask');
     Route::post('/create_author_task/{id}', [TaskController::class, 'store'])->name('AuthorTaskStore');
     Route::get('/create_author_lesson', [ProfileController::class, 'createAuthorLesson'])->name('createAuthorLesson');
-    Route::post('/create_author_lesson/{id}', [LessonController::class, 'store'])->name('authorLessonStore');
+    Route::post('/create_author_lesson/{id}', [LessonController::class, 'store'])->name('authorLessonStore')->where('id', '[0-9]+');;
     Route::get('/module/store/{id}', [ModuleController::class, 'store'])->name('storeModule');
     Route::post('/test/store/{id}', [TestController::class, 'store'])->name('authorTestStore');
 

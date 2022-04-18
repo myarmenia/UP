@@ -62,7 +62,7 @@
 
 
         <div class="cabinet-course__content">
-            <form action="{{ route('authorLessonStore') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('authorLessonStore',['id'=>1]) }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="course-create__row">
                 <div class="course-create__label">
