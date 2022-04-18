@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('invite_link_author');
             $table->string('invite_link_mentor');
             $table->string('invite_link_student');
-            $table->date('publish_date_video');
+            $table->time('publish_date_video');
+            $table->time('publish_date_video_MSK');
             $table->string('video_type');
             $table->string('status');
             $table->timestamps();

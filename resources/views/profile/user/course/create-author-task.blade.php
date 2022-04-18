@@ -70,12 +70,14 @@
             <div class="cabinet-tabs__content">
 
                 <div id="tab1" class="cabinet-tabs__content-inner _active">
+                    <form action="{{ route('AuthorTaskStore',['id' =>  5]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                     <div class="course-create__row">
                         <div class="course-create__label">
                             <span>Название задания</span>
                         </div>
                         <label class="course-create__input input">
-                            <input type="text" placeholder="Введите текст">
+                            <input type="text" placeholder="Введите текст" name="name">
                         </label>
                     </div>
                     <div class="course-create__row">
@@ -85,7 +87,7 @@
                         <div class="course-create__editor">
                             <!-- тут редактор -->
                             <label class="course-create__input textarea input">
-                                <textarea placeholder="Введите текст"></textarea>
+                                <textarea placeholder="Введите текст" name="description"></textarea>
                             </label>
                         </div>
                     </div>
@@ -94,21 +96,24 @@
                             <span>Материалы к уроку</span>
                         </div>
                         <label class="course-create__input file">
-                            <input type="file">
+                            <input type="file" name="file">
                             <span>Выберите один или несколько файлов</span>
                         </label>
                     </div>
-                    <a href="#" class="btn-blue _cabinet-btn">Сохранить задание</a>
+                    <button class="btn-blue _cabinet-btn">Сохранить задание</button>
+                    </form>
                 </div>
 
                 <div id="tab2" class="cabinet-tabs__content-inner">
+                    <form action="{{ route('authorTestStore',['id'=>1]) }}" method="POST">
+                        @csrf
                     <div class="course-create__row-wrap">
                         <div class="course-create__row">
                             <div class="course-create__label">
                                 <span>Название теста</span>
                             </div>
                             <label class="course-create__input input">
-                                <input type="text" placeholder="Введите текст">
+                                <input type="text" placeholder="Введите текст" name="name">
                             </label>
                         </div>
                         <div class="course-create__row _time">
@@ -116,7 +121,7 @@
                                 <span>Ограничения времени на повторную сдачу</span>
                             </div>
                             <label class="course-create__input input">
-                                <input type="text" placeholder="ММ:СС">
+                                <input type="time" placeholder="ММ:СС" name="time_limit">
                             </label>
                         </div>
                     </div>
@@ -125,7 +130,7 @@
                             <span>Описание теста</span>
                         </div>
                         <label class="course-create__input textarea input">
-                            <textarea placeholder="Введите текст"></textarea>
+                            <textarea placeholder="Введите текст" name="description"></textarea>
                         </label>
                     </div>
 
@@ -178,10 +183,10 @@
                         </div>
                         <div class="course-create__test-bottom">
                             <a href="#" class="btn-white">Добавить вопрос</a>
-                            <a href="#" class="btn-blue _cabinet-btn">Сохранить тест</a>
+                            <button class="btn-blue _cabinet-btn">Сохранить тест</button>
                         </div>
                     </div>
-
+                    </form>
                 </div>
 
             </div>

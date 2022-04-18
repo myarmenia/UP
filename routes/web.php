@@ -8,7 +8,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Services\FileUploadService;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
+use App\Http\Controllers\Course\UserCourseController;
+use App\Http\Controllers\Course\ModuleController;
+use App\Http\Controllers\Course\LessonController;
+use App\Http\Controllers\Course\TaskController;
+use App\Http\Controllers\Course\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +36,14 @@ Route::group(['middleware' => ['auth', 'verified'],'prefix' => 'profile'], funct
     Route::post('/update_password', [ProfileController::class, 'updatePassword'])->name('updatePassword');
     Route::group(['prefix' => 'course'], function() {
     Route::get('/create_author', [ProfileController::class, 'createAuthor'])->name('createAuthor');
+    Route::post('/create_author', [UserCourseController::class, 'store'])->name('authorStore');
     Route::get('/create_author_task', [ProfileController::class, 'createAuthorTask'])->name('createAuthorTask');
+    Route::post('/create_author_task/{id}', [TaskController::class, 'store'])->name('AuthorTaskStore');
     Route::get('/create_author_lesson', [ProfileController::class, 'createAuthorLesson'])->name('createAuthorLesson');
+    Route::post('/create_author_lesson/{id}', [LessonController::class, 'store'])->name('authorLessonStore');
+    Route::get('/module/store/{id}', [ModuleController::class, 'store'])->name('storeModule');
+    Route::post('/test/store/{id}', [TestController::class, 'store'])->name('authorTestStore');
+
     });
 });
 
@@ -45,6 +55,5 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('get_file',[FileUploadService::class,'get_file'])->name('get_file');
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
