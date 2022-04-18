@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="{{ asset('style/all.css') }}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('style/all.css') }}">
 
  @yield('style')
 </head>

@@ -71,6 +71,11 @@
                 <label class="course-create__input input">
                     <input type="text" placeholder="Введите текст" name="name">
                 </label>
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -85,6 +90,11 @@
                         <option value="4">База знаний 4</option>
                     </select>
                 </label>
+                @error('status')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -93,6 +103,11 @@
                 <label class="course-create__input input">
                     <input type="text" placeholder="Введите имя" name="speaker_name">
                 </label>
+                @error('speaker_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row _small">
                 <div class="course-create__label">
@@ -101,6 +116,11 @@
                 <label class="course-create__input textarea input">
                     <textarea placeholder="Введите текст" name="speaker_desc"></textarea>
                 </label>
+                @error('speaker_desc')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -115,6 +135,11 @@
                         <option value="4">База знаний 4</option>
                     </select>
                 </label>
+                @error('source_type')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -123,6 +148,11 @@
                 <label class="course-create__input input">
                     <input type="text" placeholder="Вставьте ссылку" name="video_path">
                 </label>
+                @error('video_path')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -131,6 +161,11 @@
                 <label class="course-create__input input">
                     <input type="text" placeholder="Вставьте код" name="video_code">
                 </label>
+                @error('video_code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <!--  -->
@@ -151,8 +186,8 @@
                 </div>
                 <label class="course-create__input input link">
                     <input type="text" placeholder="https://123.123/213erere" name="invite_link_author">
-                    <a href="#" class="course-create__input-btn _copy"><img src="img/icons/cabinet-course-copy-link.svg" alt="copy"></a>
-                    <a href="#" class="course-create__input-btn _reload"><img src="img/icons/cabinet-course-reload-link.svg" alt="reload"></a>
+                    <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
+                    <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
             </div>
             <div class="course-create__row">
@@ -161,8 +196,8 @@
                 </div>
                 <label class="course-create__input input link">
                     <input type="text" placeholder="https://123.123/213erere" name="invite_link_mentor">
-                    <a href="#" class="course-create__input-btn _copy"><img src="img/icons/cabinet-course-copy-link.svg" alt="copy"></a>
-                    <a href="#" class="course-create__input-btn _reload"><img src="img/icons/cabinet-course-reload-link.svg" alt="reload"></a>
+                    <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
+                    <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
             </div>
             <div class="course-create__row">
@@ -171,8 +206,8 @@
                 </div>
                 <label class="course-create__input input link">
                     <input type="text" placeholder="https://123.123/213erere" name="invite_link_student">
-                    <a href="#" class="course-create__input-btn _copy"><img src="img/icons/cabinet-course-copy-link.svg" alt="copy"></a>
-                    <a href="#" class="course-create__input-btn _reload"><img src="img/icons/cabinet-course-reload-link.svg" alt="reload"></a>
+                    <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
+                    <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
             </div>
 
@@ -189,6 +224,11 @@
                 <label class="course-create__input input">
                     <input type="time" placeholder="Введите дату" name="publish_date_video">
                 </label>
+                @error('publish_date_video')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -197,6 +237,11 @@
                 <label class="course-create__input input">
                     <input type="time" placeholder="ЧЧ:ММ" name="publish_date_video_MSK">
                 </label>
+                @error('publish_date_video_MSK')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -214,7 +259,11 @@
                     <input type="radio"  name="video_type" value="Онлайн вебинар">
                     <span>Онлайн вебинар</span>
                 </label>
-
+                @error('video_type')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
 
             <div class="course-create__row">
@@ -233,4 +282,31 @@
 
 </main>
 
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $('._copy').click(function(){
+        let a = $(this).parent().parent().find("input");
+
+        navigator.clipboard.writeText(a.val())
+
+        $(this).parent().parent().append('<span class="valid-feedback"><strong>Скопировано</strong></span>')
+
+        setTimeout(() => {
+            $('.valid-feedback').remove()
+        }, 1000);
+
+    });
+    });
+
+    $(document).ready(function(){
+        $('._reload').click(function(){
+        $(this).parent().parent().find("input").val('');
+
+    });
+    });
+
+</script>
 @endsection

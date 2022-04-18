@@ -7,7 +7,7 @@
 @section('content')
 <main class="main">
     <div class="cabinet__header">
-        <form action="{{ route('createAuthorStore') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('authorStore',['id' =>1]) }}" method="POST" enctype="multipart/form-data">
          @csrf
             <!-- Бургер кнопка -->
          <div class="burger__menu _open">
@@ -43,6 +43,11 @@
                  <label class="course-create__input input">
                      <input type="text" placeholder="Введите текст" name="name">
                  </label>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
              </div>
              <div class="course-create__row">
                  <div class="course-create__label">
@@ -57,6 +62,11 @@
                          <option value="4">База знаний 4</option>
                      </select>
                  </label>
+                 @error('category_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
              </div>
              <div class="course-create__row">
                  <div class="course-create__label">
@@ -65,6 +75,11 @@
                  <label class="course-create__input input">
                      <input type="text" placeholder="Введите текст" name="module_name">
                  </label>
+                 @error('module_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
              </div>
              <div class="course-create__row _small">
                  <div class="course-create__label">
@@ -74,6 +89,11 @@
                  <label class="course-create__input textarea input">
                      <textarea placeholder="Введите текст" name="description"></textarea>
                  </label>
+                 @error('description')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
              </div>
              <div class="course-create__row _big">
                  <div class="course-create__label">
@@ -83,6 +103,11 @@
                  <label class="course-create__input textarea input">
                      <textarea placeholder="Введите текст" name="extended_desc"></textarea>
                  </label>
+                 @error('extended_desc')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
              </div>
 
              <button  class="btn-blue _cabinet-btn">Сохранить курс</button>
