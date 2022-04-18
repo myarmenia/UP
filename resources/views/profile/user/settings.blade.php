@@ -94,76 +94,7 @@
                             </div>
                             <div class='error'></div>
                         @endforeach
-                        {{-- <div class="cabinet-settings__social-input">
-                            <div class="cabinet-settings__social-icon social-link">
-                                <svg>
-                                    <use xlink:href="#_icon-inst"></use>
-                                </svg>
-                            </div>
-                            <label class="cabinet-settings__social-name">
-                                <input type="text" placeholder="Имя пользователя" name="social_link[inst]">
-                            </label>
-                            <div class="cabinet-settings__social-btns">
-                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                                <div class="cabinet-settings__btn-add"></div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="cabinet-settings__social-input">
-                            <div class="cabinet-settings__social-icon social-link">
-                                <svg>
-                                    <use xlink:href="#_icon-tiktok"></use>
-                                </svg>
-                            </div>
-                            <label class="cabinet-settings__social-name">
-                                <input type="text" placeholder="Имя пользователя" name="social_link[tiktok]">
-                            </label>
-                            <div class="cabinet-settings__social-btns">
-                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                                <div class="cabinet-settings__btn-add"></div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="cabinet-settings__social-input">
-                            <div class="cabinet-settings__social-icon social-link">
-                                <svg>
-                                    <use xlink:href="#_icon-vk"></use>
-                                </svg>
-                            </div>
-                            <label class="cabinet-settings__social-name">
-                                <input type="text" placeholder="Имя пользователя" name="social_link[vk]">
-                            </label>
-                            <div class="cabinet-settings__social-btns">
-                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                                <div class="cabinet-settings__btn-add"></div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="cabinet-settings__social-input">
-                            <div class="cabinet-settings__social-icon social-link">
-                                <svg>
-                                    <use xlink:href="#_icon-facebook"></use>
-                                </svg>
-                            </div>
-                            <label class="cabinet-settings__social-name">
-                                <input type="text" placeholder="Имя пользователя" name="social_link[facebook]">
-                            </label>
-                            <div class="cabinet-settings__social-btns">
-                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                                <div class="cabinet-settings__btn-add"></div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="cabinet-settings__social-input">
-                            <div class="cabinet-settings__social-icon social-link">
-                                <svg>
-                                    <use xlink:href="#_icon-ok"></use>
-                                </svg>
-                            </div>
-                            <label class="cabinet-settings__social-name">
-                                <input type="text" placeholder="Имя пользователя" name="social_link[ok]" value="{{Auth::user()->user_social_link[0]->url}}">
-                            </label>
-                            <div class="cabinet-settings__social-btns">
-                                <a href="#" class="cabinet-settings__link-add">Добавить</a>
-                                <div class="cabinet-settings__btn-add"></div>
-                            </div>
-                        </div> --}}
+                        
 
                         <label class="cabinet-settings__dropdown dropdown">
                             <select name="criterion">
@@ -200,6 +131,7 @@
                     <form  method="post" class="cabinet-settings__form" name="chp" id="changePassword">
 
                         @csrf
+                        <input type='hidden' value="{{route('updatePassword')}}" id="change_password_url" >
                         <label class="cabinet-settings__input input">
                             <input type="password" placeholder="Старый пароль" name="old_password" >
                             <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
@@ -212,7 +144,7 @@
                         <a href="{{ route('password.request') }}" class="cabinet-settings__link-recovery">Забыли пароль?</a>
 
                         <label class="cabinet-settings__input input">
-                            <input type="password" placeholder="Новый пароль" name="password" >
+                            <input type="password" placeholder="Новый пароль" name="new_password" >
                             <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
                         </label>
 
@@ -221,18 +153,18 @@
                             </span>
 
                         <label class="cabinet-settings__input input">
-                            <input type="password" placeholder="Повторите пароль" name="new_password" >
+                            <input type="password" placeholder="Повторите пароль" name="new_password_confirmation" >
                             <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
                         </label>
 
                             <span class="invalid-feedback" role="alert" id="new_password">
                                 <strong></strong>
                             </span>
-<input type='submit' value="Сохранить" class="btn-blue _cabinet-btn">
+                            <input type='submit' value="Сохранить" class="btn-blue _cabinet-btn">
                     </form>
-                    <div id='error'></div>
+                    
             </div>
-
+            <div id='success'></div>
         </div>
     </div>
 </main>
@@ -240,50 +172,5 @@
 @endsection
 @section('script')
     <script src="{{ asset('js/settings.js') }}"></script>
-    <script>
-        // var form = document.forms.namedItem("chp");
-        var form = document.getElementById('changePassword')
-        form.addEventListener('submit', function(ev) {
-            ev.preventDefault();
-            csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                var formData = new FormData(form)
-                console.log(formData)
-                document.getElementById('old_password').innerHTML=''
-                document.getElementById('password').innerHTML=''
-                document.getElementById('new_password').innerHTML=''
-
-                fetch("{{route('updatePassword')}}",{
-      method: 'POST',
-      headers: {
-        
-        'X-CSRF-TOKEN':csrf
-         },
-
-         body: formData
-       }).then(async response => {
-console.log(response)
-// response.headers.set("Content-Type", "application/json")
-// console.log(response.headers.get("Content-Type"))
-         if (!response.ok) {
-
-         const validation = await response.json();
-
-      
-         for (const key in validation.errors) {
-             if (validation.errors.hasOwnProperty.call(validation.errors, key)) {
-                document.getElementById(key+'').innerHTML=''
-                 const element = validation.errors[key][0];
-                 document.getElementById(key+'').innerHTML=element
-
-             }
-         }
-       }else{
-        console.log('else');
-        // document.getElementById('error').innerHTML=element
-       }
-    })
-
-        }, false)
-
-     </script>
+    <script src="{{ asset('js/change-password.js') }}"></script>
 @endsection

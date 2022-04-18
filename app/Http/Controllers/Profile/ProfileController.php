@@ -74,80 +74,38 @@ class ProfileController extends Controller
             }
         }
         $data = User::where('id', Auth::user()->id)->update($update);
-
-        // dd($data);
     }
 
     public function updatePassword(Request $request){
-//         $p=json_decode($request);
-// dd($p->old_password);
-$pk=$request->json()->all();
 
-$p=json_encode($pk);
-$p1=json_decode($p, true);
-// dd($p1);
-// dd($request->all());
-// dd($request['old_password']);
-$validator = Validator::make($request->all(), [
-    'old_password' => ['required'],
-                'password' => ['required'],
-                'new_password' => ['confirmed']
-]);
-if ($validator->fails())
-        {
-            // dd($validator->errors());
+        $validator = Validator::make($request->all(), [
+            'old_password' => ['required'],
+            'new_password' => ['required', 'string', 'min:8','confirmed']
+        ]);
+        if ($validator->fails()){
             return response()->json(['errors'=>$validator->errors()], 404);
         }
-        return response()->json(['success'=>'Record is successfully added'], 200);
-    // if ($validator->passes()) {
-    //     //TODO Handle your data
-    // } else {
-    //     //TODO Handle your error
-    //     dd($validator->errors()->all());
-    // }
-// $pk->validate([
-//             'old_password' => 'required',
-//             'password' => 'required',
-//             'new_password' => 'confirmed'
-//         ]);
-        // return json_encode($v);
-        // if ($v->fails())
-        // {
-        //     return response()->json(['errors'=>$v->errors()->all()], 404);
-        // }
-        // return response()->json(['success'=>'Record is successfully added'], 200);
+       
         $hashedPassword = Auth::user()->password;
 
         if (Hash::check($request->old_password , $hashedPassword )) {
 
-          if (!Hash::check($request->new_password , $hashedPassword)) {
+            if (!Hash::check($request->new_password , $hashedPassword)) {
 
                $user =user::find(Auth::user()->id);
                $user->password = bcrypt($request->new_password);
                user::where( 'id' , Auth::user()->id)->update( array( 'password' =>  $user->password));
-
-            //    session()->flash('message','password updated successfully');
-            //    return redirect()->back();
-        return response()->json(['success'=>'password updated successfully'], 200);
-
-             }
-
-             else{
-                //    session()->flash('message','new password can not be the old password!');
-                //    return redirect()->back();
-                return response()->json(['errors'=>['new_password'=>'new password can not be the old password']], 404);
-                 }
+               return response()->json(['success'=>'Пароль успешно обновлен'], 200);
 
             }
+            else{
+                return response()->json(['errors'=>['new_password'=>['Новый пароль не может быть старым паролем']]], 404);
+            }
 
-           else{
-                // session()->flash('message','old password doesnt matched ');
-                // return redirect()->back();
-                return response()->json(['errors'=>['old_password'=>$request->old_password]], 404);
-
-              }
-
-
+        }
+        else{
+                return response()->json(['errors'=>['old_password'=>['Cтарый пароль неверный']]], 404);
+        }
     }
 
     public function createAuthor()
