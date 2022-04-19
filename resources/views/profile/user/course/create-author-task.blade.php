@@ -70,7 +70,7 @@
             <div class="cabinet-tabs__content">
 
                 <div id="tab1" class="cabinet-tabs__content-inner _active">
-                    <form action="{{ route('AuthorTaskStore',['id' =>  5]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('AuthorTaskStore',['id' =>  1]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                     <div class="course-create__row">
                         <div class="course-create__label">
@@ -107,7 +107,7 @@
                 </div>
 
                 <div id="tab2" class="cabinet-tabs__content-inner">
-                    <form action="{{ route('authorTestStore',['id'=>5]) }}" method="POST">
+                    <form action="{{ route('authorTestStore',['id'=>1]) }}" method="POST">
                         @csrf
                     <div class="course-create__row-wrap">
                         <div class="course-create__row">
@@ -211,6 +211,7 @@
                 </div>
 
             </div>
+
         </div>
 
     </div>
