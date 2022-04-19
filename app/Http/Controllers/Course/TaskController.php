@@ -13,9 +13,10 @@ class TaskController extends Controller
 {
     public function store(TaskReq $request,$id)
     {
+        dd($id);
         $data = $request->validated();
         $data['lesson_id'] = $id;
-
+dd($id);
         $task = Task::create($data);
 
         if(isset($data['file'])){

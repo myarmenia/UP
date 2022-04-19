@@ -25,7 +25,7 @@ use App\Http\Controllers\Course\TestController;
 */
 Auth::routes(['verify'=>true]);
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('register');
 });
 
 

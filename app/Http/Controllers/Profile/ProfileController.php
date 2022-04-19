@@ -77,7 +77,7 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function updatePassword(Request $request){
+    public function updatePas3word(Request $request){
 
         $validator = Validator::make($request->all(), [
             'old_password' => ['required'],

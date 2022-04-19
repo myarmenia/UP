@@ -24,7 +24,7 @@ class ModuleReq extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'nullable'
         ];
     }
 }

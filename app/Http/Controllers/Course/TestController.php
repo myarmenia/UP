@@ -13,7 +13,7 @@ class TestController extends Controller
 {
     public function store(TestReq $request,$id)
     {
-
+  
         $data = $request->validated();
         $data['lesson_id'] = $id;
         $test_cr =  Test::create($data);
