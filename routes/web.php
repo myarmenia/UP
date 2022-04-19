@@ -57,3 +57,5 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('get_file',[FileUploadService::class,'get_file'])->name('get_file');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
