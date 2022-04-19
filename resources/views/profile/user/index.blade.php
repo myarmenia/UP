@@ -45,35 +45,28 @@
                                 {{ Auth::user()->phone_number ?? null}}
                             </span>
                         </div>
-
+                        @php
+                            $arr=['instagram', 'tiktok', 'vk', 'facebook', 'ok'];
+                            $val='';
+                        @endphp
                         <div class="cabinet-user__social">
                             <span>Социальные сети:</span>
                             <div class="cabinet-user__social-inner">
-                                <a href="#" class="social-link">
-                                    <svg>
-                                        <use xlink:href="#_icon-inst"></use>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg>
-                                        <use xlink:href="#_icon-tiktok"></use>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg>
-                                        <use xlink:href="#_icon-vk"></use>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg>
-                                        <use xlink:href="#_icon-facebook"></use>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg>
-                                        <use xlink:href="#_icon-ok"></use>
-                                    </svg>
-                                </a>
+                                @foreach ($arr as $item)
+                                    @php $val = '' @endphp
+                                    @foreach (Auth::user()->user_social_link as $value)
+                                    
+                                        @if ($item == $value->type)
+                                            @php $val = $value->url @endphp
+                                        @endif
+                                    @endforeach
+                                    <a href="{{$val}}" class="social-link">
+                                        <svg>
+                                            <use xlink:href="#_icon-{{$item=='instagram' ? 'inst' : $item}}"></use>
+                                        </svg>
+                                    </a>
+                                @endforeach
+                                
                             </div>
                         </div>
                     </div>
@@ -129,47 +122,12 @@
                 </div>
                 <!-- Заглушка - end -->
                 <div class="cabinet-user__courses-inner">
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-                    <div class="cabinet-user__courses-item">
-                        <div class="user-courses__item-img"><img src="img/courses-slider-img.jpg" alt=""></div>
-                        <h3 class="cabinet-courses__item-title">заголовок Название курса для предпринимателей</h3>
-                    </div>
-
+                    @foreach (Auth::user()->user_course as $item)
+                        <div class="cabinet-user__courses-item">
+                            <div class="user-courses__item-img"><img src="{{ route('get_file',['path' => $item->file['path'] ?: null]) }}" alt=""></div>
+                            <h3 class="cabinet-courses__item-title">{{$item->name}}</h3>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

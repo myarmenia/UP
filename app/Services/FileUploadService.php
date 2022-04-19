@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class FileUploadService
 {
 
-    public static function upload(array|object $data,string $folder_path)
+    public static function upload(array|object $data, string $folder_path)
     {
         $filename = md5(microtime()).$data->getClientOriginalName();
 
