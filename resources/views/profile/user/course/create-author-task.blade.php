@@ -176,7 +176,7 @@
                                     </div>
                                     <div class="course-create__test-variant">
                                         <label class="course-create__input input">
-                                            <input type="text" placeholder="Введите текст" name="a_name[01]">
+                                            <input type="text" placeholder="Введите текст" name="a_name[01]" required>
                                             <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
                                         </label>
                                         <label class="course-create__test-checkbox">
@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="course-create__test-variant">
                                         <label class="course-create__input input">
-                                            <input type="text" placeholder="Введите текст" name="a_name[02]">
+                                            <input type="text" placeholder="Введите текст" name="a_name[02]" required>
                                             <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
                                         </label>
                                         <label class="course-create__test-checkbox">
@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="course-create__test-variant">
                                         <label class="course-create__input input">
-                                            <input type="text" placeholder="Введите текст" name="a_name[03]">
+                                            <input type="text" placeholder="Введите текст" name="a_name[03]" required>
                                             <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
                                         </label>
                                         <label class="course-create__test-checkbox">
@@ -260,7 +260,7 @@
         let count  = x.toString() + ++matched.length
         $('.answer_' + x).append(`<div class="course-create__test-variant">
                                         <label class="course-create__input input">
-                                            <input type="text" placeholder="Введите текст" name="a_name[${count}]">
+                                            <input type="text" placeholder="Введите текст" name="a_name[${count}]" required>
                                             <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
                                         </label>
                                         <label class="course-create__test-checkbox">
@@ -288,7 +288,7 @@
                                     </div>
                                     <div class="course-create__test-variant">
                                         <label class="course-create__input input">
-                                            <input type="text" placeholder="Введите текст" name="a_name[${count + count.toString()}]">
+                                            <input type="text" placeholder="Введите текст" name="a_name[${count + count.toString()}]" required>
                                             <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
                                         </label>
                                         <label class="course-create__test-checkbox">

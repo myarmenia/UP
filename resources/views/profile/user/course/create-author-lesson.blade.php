@@ -57,6 +57,8 @@
                 <a href="#" class="course-create__button-add _module btn-white">Добавить новый модуль</a>
                 <a href="#" class="course-create__button-add _test">Добавить финальный тест</a>
                 <a href="#" class="course-create__button-save btn-blue _cabinet-btn">Сохранить курс</a>
+                <a href="{{ route('createAuthorTask') }}" class="btn-blue _cabinet-btn">Добавить задание
+                </a>
             </div>
         </div>
 
@@ -191,6 +193,11 @@
                     <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
                     <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
+                @error('invite_link_author')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -201,6 +208,11 @@
                     <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
                     <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
+                @error('invite_link_mentor')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
@@ -211,6 +223,11 @@
                     <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
                     <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
+                @error('invite_link_student')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <button  class="btn-blue _cabinet-btn">Сохранить урок</button>
