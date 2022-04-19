@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Course\UserCourse;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,7 +51,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(UserSocialLink::class,'user_id','id');
     }
-
+    public function user_course()
+    {
+        return $this->hasMany(UserCourse::class,'user_id');
+    }
+    public function file()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
     public function isAdmin(){
         return $this->hasRole('Admin');
     }
