@@ -279,6 +279,9 @@
             </div>
         </form>
         </div>
+        <a href="{{ route('createAuthorTask') }}" class="btn-blue _cabinet-btn">Добавить задачу
+
+        </a>
     </div>
 
 

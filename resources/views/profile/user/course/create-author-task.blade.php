@@ -64,13 +64,13 @@
         <div class="cabinet-course__content cabinet-tabs">
             <a href="#" class="cabinet__btn-back">Назад</a>
             <div class="cabinet-tabs__nav">
-                <a href="#tab1" class="cabinet-tabs__nav-link _active">Добавить задание</a>
-                <a href="#tab2" class="cabinet-tabs__nav-link">Добавить тест</a>
+                <a href="#tab1" id="tab1_a" class="cabinet-tabs__nav-link _active">Добавить задание</a>
+                <a href="#tab2" id="tab2_a" class="cabinet-tabs__nav-link">Добавить тест</a>
             </div>
             <div class="cabinet-tabs__content">
 
                 <div id="tab1" class="cabinet-tabs__content-inner _active">
-                    <form action="{{ route('AuthorTaskStore',['id' =>  5]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('AuthorTaskStore',['id' =>  1]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                     <div class="course-create__row">
                         <div class="course-create__label">
@@ -79,6 +79,11 @@
                         <label class="course-create__input input">
                             <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror value="{{ old('name') ?? null }}">
                         </label>
+                        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                     </div>
                     <div class="course-create__row">
                         <div class="course-create__label">
@@ -91,6 +96,11 @@
                                    {{ old('description') ?? null }}
                                 </textarea>
                             </label>
+                            @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="course-create__row">
@@ -102,12 +112,12 @@
                             <span>Выберите один или несколько файлов</span>
                         </label>
                     </div>
-                    <button class="btn-blue _cabinet-btn">Сохранить задание</button>
+                    <button class="btn-blue _cabinet-btn" onclick="saveUrl('tab1')">Сохранить задание</button>
                     </form>
                 </div>
 
                 <div id="tab2" class="cabinet-tabs__content-inner">
-                    <form action="{{ route('authorTestStore',['id'=>5]) }}" method="POST">
+                    <form action="{{ route('authorTestStore',['id'=>1]) }}" method="POST">
                         @csrf
                     <div class="course-create__row-wrap">
                         <div class="course-create__row">
@@ -205,12 +215,13 @@
 
                     <div class="course-create__test-bottom">
                         <button type="button" class="btn-white" onclick="addQuest()">Добавить вопрос</button>
-                        <button class="btn-blue _cabinet-btn">Сохранить тест</button>
+                        <button class="btn-blue _cabinet-btn" onclick="saveUrl('tab2')">Сохранить тест</button>
                     </div>
                     </form>
                 </div>
 
             </div>
+
         </div>
 
     </div>
@@ -223,6 +234,21 @@
 @section('script')
 
 <script>
+    let loc = localStorage.getItem('modal_id');
+
+    if(loc == 'tab2'){
+        document.getElementById("tab1").classList.remove("_active");
+        document.getElementById("tab2").classList.add("_active");
+        document.getElementById("tab1_a").classList.remove("_active");
+        document.getElementById("tab2_a").classList.add("_active");
+    }
+
+    localStorage.removeItem('modal_id')
+
+    function saveUrl(id)
+    {
+        localStorage.setItem('modal_id', id);
+    }
 
     function removeAnswer(t)
     {

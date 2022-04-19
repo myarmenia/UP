@@ -8,13 +8,15 @@ use App\Http\Requests\LessonReq;
 use App\Models\Course\Lesson;
 use App\Services\FileUploadService;
 use App\Models\File;
+use App\Models\Course\Module;
 
 class LessonController extends Controller
 {
     public function store(LessonReq $request,$id)
     {
         $data = $request->validated();
-        $data['module_id'] = $id;
+        $module = Module::create(['course_id' => 1,'name' => 'Модуль']);
+        $data['module_id'] = $module['id'];
         $lesson = Lesson::create($data);
 
         if(isset($data['file']))
