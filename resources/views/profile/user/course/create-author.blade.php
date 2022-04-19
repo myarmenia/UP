@@ -138,10 +138,7 @@
      </div>
      <a href="{{ route('createAuthorLesson') }}" class="btn-blue _cabinet-btn">Добавить урок
      </a>
-     <br>
-     <a href="{{ route('createAuthorTask') }}" class="btn-blue _cabinet-btn">Добавить задачу
 
-    </a>
  </main>
 
 @endsection

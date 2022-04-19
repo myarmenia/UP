@@ -55,7 +55,7 @@
                                 @foreach ($arr as $item)
                                     @php $val = '' @endphp
                                     @foreach (Auth::user()->user_social_link as $value)
-                                    
+
                                         @if ($item == $value->type)
                                             @php $val = $value->url @endphp
                                         @endif
@@ -66,7 +66,7 @@
                                         </svg>
                                     </a>
                                 @endforeach
-                                
+
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                 <div class="cabinet-user__courses-inner">
                     @foreach (Auth::user()->user_course as $item)
                         <div class="cabinet-user__courses-item">
-                            <div class="user-courses__item-img"><img src="{{ route('get_file',['path' => $item->file['path'] ?: null]) }}" alt=""></div>
+                            <div class="user-courses__item-img"><img src="{{ route('get_file',['path' => $item->file ? $item->file['path'] : null]) }}" alt=""></div>
                             <h3 class="cabinet-courses__item-title">{{$item->name}}</h3>
                         </div>
                     @endforeach
