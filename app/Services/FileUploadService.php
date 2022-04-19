@@ -25,7 +25,7 @@ class FileUploadService
 
     public static function get_file(Request $request)
     {
-        $path = $request['path'];
+        $path = $request['path'] ?? 'public/null_image.png';
         return response()->file(Storage::path($path));
     }
 

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <main class="main">
     <div class="cabinet__header">
         <form action="{{ route('authorStore',['id' =>1]) }}" method="POST" enctype="multipart/form-data">
@@ -16,10 +17,10 @@
          <!-- Бургер кнопка - END -->
          <div class="intro__logo"><img src="img/logo-cabinet.png" alt="logo"></div>
      </div>
-
      <h2 class="cabinet__title title-block"></h2>
 
      <div class="course-create__body">
+        @extends('message')
          <div class="course-create__left">
              <div class="course-create__cover">
                  <div class="course-create__cover-image"><img src="img/courses-slider-img.jpg" alt="image"></div>
@@ -41,7 +42,7 @@
                      <div class="course-create__characters">Осталось <span>70</span> символов</div>
                  </div>
                  <label class="course-create__input input">
-                     <input type="text" placeholder="Введите текст" name="name">
+                     <input type="text" placeholder="Введите текст" name="name" value="{{ old('name') ?? null }}">
                  </label>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -73,7 +74,7 @@
                      <span>Название модуля</span>
                  </div>
                  <label class="course-create__input input">
-                     <input type="text" placeholder="Введите текст" name="module_name">
+                     <input type="text" placeholder="Введите текст" name="module_name" value="{{ old('module_name') ?? null }}">
                  </label>
                  @error('module_name')
                     <span class="invalid-feedback" role="alert">
@@ -87,7 +88,9 @@
                      <div class="course-create__characters">Осталось <span>284</span> символов</div>
                  </div>
                  <label class="course-create__input textarea input">
-                     <textarea placeholder="Введите текст" name="description"></textarea>
+                     <textarea placeholder="Введите текст" name="description">
+                        {{ old('description') ?? null }}
+                     </textarea>
                  </label>
                  @error('description')
                     <span class="invalid-feedback" role="alert">
@@ -133,5 +136,14 @@
          </div>
         </form>
      </div>
+     <a href="{{ route('createAuthorLesson') }}" class="btn-blue _cabinet-btn">Добавить урок
+     </a>
+     <br>
+     <a href="{{ route('createAuthorTask') }}" class="btn-blue _cabinet-btn">Добавить задачу
+
+    </a>
  </main>
+
 @endsection
+
+

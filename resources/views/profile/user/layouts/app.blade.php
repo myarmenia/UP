@@ -16,6 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('style/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/notific.css') }}">
 
  @yield('style')
 </head>
@@ -157,13 +158,13 @@
                 <!-- Бургер кнопка - END -->
             </div>
             <ul class="sidebar__menu">
-                <li><a href="cabinet-user.html" class="sidebar__menu-link _active">
+                <li><a href="{{ route('profile') }}" class="sidebar__menu-link @if (Request::is('profile')) _active @endif">
                         <svg>
                             <use xlink:href="#_icon-cabinet-user"></use>
                         </svg>
                         <span>Личный кабинет</span>
                     </a></li>
-                <li><a href="cabinet-notific.html" class="sidebar__menu-link">
+                <li><a href="" class="sidebar__menu-link" >
                         <svg>
                             <use xlink:href="#_icon-cabinet-notific"></use>
                         </svg>
@@ -176,7 +177,7 @@
                         </svg>
                         <span>Рейтинг</span>
                     </a></li>
-                <li><a href="cabinet-courses.html" class="sidebar__menu-link">
+                <li><a href="{{ route('createAuthor') }}" class="sidebar__menu-link @if (Request::is('profile/course/create_author')) _active @endif">
                         <svg>
                             <use xlink:href="#_icon-cabinet-courses"></use>
                         </svg>
@@ -194,7 +195,7 @@
                         </svg>
                         <span>Найти курс</span>
                     </a></li>
-                <li><a href="cabinet-message.html" class="sidebar__menu-link">
+                <li><a href="" class="sidebar__menu-link">
                         <svg>
                             <use xlink:href="#_icon-cabinet-message"></use>
                         </svg>
@@ -202,7 +203,7 @@
                     </a></li>
             </ul>
             <ul class="sidebar__menu _bottom">
-                <li><a href="{{ route('profileSettings') }}" class="sidebar__menu-link _settings">
+                <li><a href="{{ route('profileSettings') }}" class="sidebar__menu-link _settings @if (Request::is('profile/settings')) _active @endif">
                         <svg>
                             <use xlink:href="#_icon-cabinet-settings"></use>
                         </svg>
@@ -222,7 +223,6 @@
                 </li>
             </ul>
         </aside>
-
         @yield('content')
     </div>
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
