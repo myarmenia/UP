@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class FileUploadService
 {
 
-    public static function upload(array|object $data,string $folder_path)
+    public static function upload(array|object $data, string $folder_path)
     {
         $filename = md5(microtime()).$data->getClientOriginalName();
 
@@ -25,7 +25,7 @@ class FileUploadService
 
     public static function get_file(Request $request)
     {
-        $path = $request['path'];
+        $path = $request['path'] ?? 'public/null_image.png';
         return response()->file(Storage::path($path));
     }
 

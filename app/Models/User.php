@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Course\UserCourse;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\File;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRoles;
 
@@ -45,6 +47,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function user_social_link()
+    {
+        return $this->hasMany(UserSocialLink::class,'user_id','id');
+    }
+    public function user_course()
+    {
+        return $this->hasMany(UserCourse::class,'user_id');
+    }
+    public function file()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
     public function isAdmin(){
         return $this->hasRole('Admin');
     }

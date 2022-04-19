@@ -62,73 +62,112 @@
 
 
         <div class="cabinet-course__content">
-            <div class="course-create__row">
+            <form action="{{ route('authorLessonStore',['id'=>1]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Название урока</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Введите текст">
+                    <input type="text" placeholder="Введите текст" name="name" value="{{ old('name') ?? null }}">
                 </label>
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Статус видимости урока</span>
                 </div>
                 <label class="course-create__input dropdown">
-                    <select>
+                    <select name="status">
                         <option value="">Черновик</option>
-                        <option value="">База знаний 1</option>
-                        <option value="">База знаний 2</option>
-                        <option value="">База знаний 3</option>
-                        <option value="">База знаний 4</option>
+                        <option value="1">База знаний 1</option>
+                        <option value="2">База знаний 2</option>
+                        <option value="3">База знаний 3</option>
+                        <option value="4">База знаний 4</option>
                     </select>
                 </label>
+                @error('status')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Имя спикера</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Введите имя">
+                    <input type="text" placeholder="Введите имя" name="speaker_name" value="{{ old('speaker_name') ?? null }}">
                 </label>
+                @error('speaker_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row _small">
                 <div class="course-create__label">
                     <span>Краткое информация о спикере</span>
                 </div>
                 <label class="course-create__input textarea input">
-                    <textarea placeholder="Введите текст"></textarea>
+                    <textarea placeholder="Введите текст" name="speaker_desc">
+                        {{ old('speaker_desc') ?? null }}
+                    </textarea>
                 </label>
+                @error('speaker_desc')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Вид источника</span>
                 </div>
                 <label class="course-create__input dropdown">
-                    <select>
-                        <option value="">YouTube</option>
-                        <option value="">База знаний 1</option>
-                        <option value="">База знаний 2</option>
-                        <option value="">База знаний 3</option>
-                        <option value="">База знаний 4</option>
+                    <select name="source_type">
+                        <option value="YouTube">YouTube</option>
+                        <option value="1">База знаний 1</option>
+                        <option value="2">База знаний 2</option>
+                        <option value="3">База знаний 3</option>
+                        <option value="4">База знаний 4</option>
                     </select>
                 </label>
+                @error('source_type')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Ссылка на видео</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Вставьте ссылку">
+                    <input type="text" placeholder="Вставьте ссылку" name="video_path" value="{{ old('video_path') ?? null }}">
                 </label>
+                @error('video_path')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Код для вставки видео</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Вставьте код">
+                    <input type="text" placeholder="Вставьте код" name="video_code" value="{{ old('video_code') ?? null }}">
                 </label>
+                @error('video_code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <!--  -->
@@ -137,7 +176,7 @@
                     <span>Материалы к уроку</span>
                 </div>
                 <label class="course-create__input file">
-                    <input type="file">
+                    <input type="file" name="file">
                     <span>Выберите один или несколько файлов</span>
                 </label>
             </div>
@@ -148,9 +187,9 @@
                     <span>Инвайт ссылка для <span class="author">автора</span></span>
                 </div>
                 <label class="course-create__input input link">
-                    <input type="text" placeholder="https://123.123/213erere">
-                    <a href="#" class="course-create__input-btn _copy"><img src="img/icons/cabinet-course-copy-link.svg" alt="copy"></a>
-                    <a href="#" class="course-create__input-btn _reload"><img src="img/icons/cabinet-course-reload-link.svg" alt="reload"></a>
+                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_author" value="{{ old('invite_link_author') ?? null }}">
+                    <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
+                    <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
             </div>
             <div class="course-create__row">
@@ -158,9 +197,9 @@
                     <span>Инвайт ссылка для <span class="mentor">наставника</span></span>
                 </div>
                 <label class="course-create__input input link">
-                    <input type="text" placeholder="https://123.123/213erere">
-                    <a href="#" class="course-create__input-btn _copy"><img src="img/icons/cabinet-course-copy-link.svg" alt="copy"></a>
-                    <a href="#" class="course-create__input-btn _reload"><img src="img/icons/cabinet-course-reload-link.svg" alt="reload"></a>
+                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_mentor" value="{{ old('invite_link_mentor') ?? null }}">
+                    <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
+                    <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
             </div>
             <div class="course-create__row">
@@ -168,13 +207,13 @@
                     <span>Инвайт ссылка для <span class="student">обучающегося</span></span>
                 </div>
                 <label class="course-create__input input link">
-                    <input type="text" placeholder="https://123.123/213erere">
-                    <a href="#" class="course-create__input-btn _copy"><img src="img/icons/cabinet-course-copy-link.svg" alt="copy"></a>
-                    <a href="#" class="course-create__input-btn _reload"><img src="img/icons/cabinet-course-reload-link.svg" alt="reload"></a>
+                    <input type="text" placeholder="https://123.123/213erere" name="invite_link_student" value="{{ old('invite_link_student') ?? null }}">
+                    <a href="#" class="course-create__input-btn _copy"><img src="{{ asset('img/icons/cabinet-course-copy-link.svg') }}" alt="copy"></a>
+                    <a href="#" class="course-create__input-btn _reload"><img src="{{ asset('img/icons/cabinet-course-reload-link.svg') }}" alt="reload"></a>
                 </label>
             </div>
 
-            <a href="#" class="btn-blue _cabinet-btn">Сохранить урок</a>
+            <button  class="btn-blue _cabinet-btn">Сохранить урок</button>
 
         </div>
 
@@ -185,34 +224,48 @@
                     <span>Дата публикации видео</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="Введите дату">
+                    <input type="time" placeholder="Введите дату" name="publish_date_video" value="{{ old('publish_date_video') ?? null }}">
                 </label>
+                @error('publish_date_video')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Время публикации видео (по МСК)</span>
                 </div>
                 <label class="course-create__input input">
-                    <input type="text" placeholder="ЧЧ:ММ">
+                    <input type="time" placeholder="ЧЧ:ММ" name="publish_date_video_MSK" value="{{ old('publish_date_video_MSK') ?? null }}">
                 </label>
+                @error('publish_date_video_MSK')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
             <div class="course-create__row">
                 <div class="course-create__label">
                     <span>Тип видео</span>
                 </div>
                 <label class="course-create__input radio">
-                    <input type="radio" name="course-type-video">
+                    <input type="radio"  name="video_type" value="Запись урока">
                     <span>Запись урока</span>
                 </label>
                 <label class="course-create__input radio">
-                    <input type="radio" name="course-type-video">
+                    <input type="radio"  name="video_type" value="Автовебинар(запись вебинара)">
                     <span>Автовебинар(запись вебинара)</span>
                 </label>
                 <label class="course-create__input radio">
-                    <input type="radio" name="course-type-video">
+                    <input type="radio"  name="video_type" value="Онлайн вебинар">
                     <span>Онлайн вебинар</span>
                 </label>
-
+                @error('video_type')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
 
             <div class="course-create__row">
@@ -220,14 +273,45 @@
                     <span>Шаблон сертификата</span>
                 </div>
                 <label class="course-create__input file _small">
-                    <input type="file">
+                    <input type="file" name="file_2">
                     <span>Выберите один или несколько файлов</span>
                 </label>
             </div>
+        </form>
         </div>
+        <a href="{{ route('createAuthorTask') }}" class="btn-blue _cabinet-btn">Добавить задачу
+
+        </a>
     </div>
 
 
 </main>
 
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $('._copy').click(function(){
+        let a = $(this).parent().parent().find("input");
+
+        navigator.clipboard.writeText(a.val())
+
+        $(this).parent().parent().append('<span class="valid-feedback"><strong>Скопировано</strong></span>')
+
+        setTimeout(() => {
+            $('.valid-feedback').remove()
+        }, 1000);
+
+    });
+    });
+
+    $(document).ready(function(){
+        $('._reload').click(function(){
+        $(this).parent().parent().find("input").val('');
+
+    });
+    });
+
+</script>
 @endsection

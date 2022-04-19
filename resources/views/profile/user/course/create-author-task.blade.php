@@ -64,19 +64,26 @@
         <div class="cabinet-course__content cabinet-tabs">
             <a href="#" class="cabinet__btn-back">Назад</a>
             <div class="cabinet-tabs__nav">
-                <a href="#tab1" class="cabinet-tabs__nav-link _active">Добавить задание</a>
-                <a href="#tab2" class="cabinet-tabs__nav-link">Добавить тест</a>
+                <a href="#tab1" id="tab1_a" class="cabinet-tabs__nav-link _active">Добавить задание</a>
+                <a href="#tab2" id="tab2_a" class="cabinet-tabs__nav-link">Добавить тест</a>
             </div>
             <div class="cabinet-tabs__content">
 
                 <div id="tab1" class="cabinet-tabs__content-inner _active">
+                    <form action="{{ route('AuthorTaskStore',['id' =>  1]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                     <div class="course-create__row">
                         <div class="course-create__label">
                             <span>Название задания</span>
                         </div>
                         <label class="course-create__input input">
-                            <input type="text" placeholder="Введите текст">
+                            <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror value="{{ old('name') ?? null }}">
                         </label>
+                        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                     </div>
                     <div class="course-create__row">
                         <div class="course-create__label">
@@ -85,8 +92,15 @@
                         <div class="course-create__editor">
                             <!-- тут редактор -->
                             <label class="course-create__input textarea input">
-                                <textarea placeholder="Введите текст"></textarea>
+                                <textarea placeholder="Введите текст" name="description" @error('description')is-invalid @enderror>
+                                   {{ old('description') ?? null }}
+                                </textarea>
                             </label>
+                            @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="course-create__row">
@@ -94,30 +108,43 @@
                             <span>Материалы к уроку</span>
                         </div>
                         <label class="course-create__input file">
-                            <input type="file">
+                            <input type="file" name="file">
                             <span>Выберите один или несколько файлов</span>
                         </label>
                     </div>
-                    <a href="#" class="btn-blue _cabinet-btn">Сохранить задание</a>
+                    <button class="btn-blue _cabinet-btn" onclick="saveUrl('tab1')">Сохранить задание</button>
+                    </form>
                 </div>
 
                 <div id="tab2" class="cabinet-tabs__content-inner">
+                    <form action="{{ route('authorTestStore',['id'=>1]) }}" method="POST">
+                        @csrf
                     <div class="course-create__row-wrap">
                         <div class="course-create__row">
                             <div class="course-create__label">
                                 <span>Название теста</span>
                             </div>
                             <label class="course-create__input input">
-                                <input type="text" placeholder="Введите текст">
+                                <input type="text" placeholder="Введите текст" name="name" @error('name')is-invalid @enderror>
                             </label>
+                            @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="course-create__row _time">
                             <div class="course-create__label">
                                 <span>Ограничения времени на повторную сдачу</span>
                             </div>
                             <label class="course-create__input input">
-                                <input type="text" placeholder="ММ:СС">
+                                <input type="time" placeholder="ММ:СС" name="time_limit" value="{{ old('time_limit') ?? null }}">
                             </label>
+                            @error('time_limit')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="course-create__row _big">
@@ -125,66 +152,76 @@
                             <span>Описание теста</span>
                         </div>
                         <label class="course-create__input textarea input">
-                            <textarea placeholder="Введите текст"></textarea>
+                            <textarea placeholder="Введите текст" name="description"></textarea>
                         </label>
+                        @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                     </div>
-
-                    <div class="course-create__test">
-                        <div class="course-create__test-item">
-                            <div class="course-create__label _number"><span>1</span> Вопрос</div>
-                            <div class="course-create__row _small">
-                                <label class="course-create__input textarea input">
-                                    <textarea placeholder="Введите текст"></textarea>
-                                </label>
-                            </div>
-
-                            <div class="course-create__row">
-                                <div class="course-create__label">
-                                    <span>Варианты ответа</span> <span>Правильный ответ</span>
-                                </div>
-                                <div class="course-create__test-variant">
-                                    <label class="course-create__input input">
-                                        <input type="text" placeholder="Введите текст">
-                                        <a href="#" class="course-create__input-close"></a>
-                                    </label>
-                                    <label class="course-create__test-checkbox">
-                                        <input type="checkbox">
-                                        <span></span>
-                                    </label>
-                                </div>
-                                <div class="course-create__test-variant">
-                                    <label class="course-create__input input">
-                                        <input type="text" placeholder="Введите текст">
-                                        <a href="#" class="course-create__input-close"></a>
-                                    </label>
-                                    <label class="course-create__test-checkbox">
-                                        <input type="checkbox">
-                                        <span></span>
-                                    </label>
-                                </div>
-                                <div class="course-create__test-variant">
-                                    <label class="course-create__input input">
-                                        <input type="text" placeholder="Введите текст">
-                                        <a href="#" class="course-create__input-close"></a>
-                                    </label>
-                                    <label class="course-create__test-checkbox">
-                                        <input type="checkbox">
-                                        <span></span>
+                    <div class="answ_quests">
+                        <div class="course-create__test">
+                            <div class="course-create__test-item">
+                                <div class="course-create__label _number"><span>1</span> Вопрос</div>
+                                <div class="course-create__row _small">
+                                    <label class="course-create__input textarea input">
+                                        <textarea placeholder="Введите текст" name="q_name[0]"></textarea>
                                     </label>
                                 </div>
 
-                                <a href="#" class="btn-white">Добавить вариант ответа</a>
+                                <div class="course-create__row answer_0">
+                                    <div class="course-create__label">
+                                        <span>Варианты ответа</span> <span>Правильный ответ</span>
+                                    </div>
+                                    <div class="course-create__test-variant">
+                                        <label class="course-create__input input">
+                                            <input type="text" placeholder="Введите текст" name="a_name[01]">
+                                            <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
+                                        </label>
+                                        <label class="course-create__test-checkbox">
+                                            <input type="checkbox" name="a_status[01]">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <div class="course-create__test-variant">
+                                        <label class="course-create__input input">
+                                            <input type="text" placeholder="Введите текст" name="a_name[02]">
+                                            <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
+                                        </label>
+                                        <label class="course-create__test-checkbox">
+                                            <input type="checkbox" name="a_status[02]">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <div class="course-create__test-variant">
+                                        <label class="course-create__input input">
+                                            <input type="text" placeholder="Введите текст" name="a_name[03]">
+                                            <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
+                                        </label>
+                                        <label class="course-create__test-checkbox">
+                                            <input type="checkbox" name="a_status[03]">
+                                            <span></span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <button type="button" class="btn-white" onclick="addAnswer(0)">
+                                    Добавить вариант ответа
+                                </button>
                             </div>
                         </div>
-                        <div class="course-create__test-bottom">
-                            <a href="#" class="btn-white">Добавить вопрос</a>
-                            <a href="#" class="btn-blue _cabinet-btn">Сохранить тест</a>
-                        </div>
                     </div>
 
+                    <div class="course-create__test-bottom">
+                        <button type="button" class="btn-white" onclick="addQuest()">Добавить вопрос</button>
+                        <button class="btn-blue _cabinet-btn" onclick="saveUrl('tab2')">Сохранить тест</button>
+                    </div>
+                    </form>
                 </div>
 
             </div>
+
         </div>
 
     </div>
@@ -192,4 +229,81 @@
 
 </main>
 
+@endsection
+
+@section('script')
+
+<script>
+    let loc = localStorage.getItem('modal_id');
+
+    if(loc == 'tab2'){
+        document.getElementById("tab1").classList.remove("_active");
+        document.getElementById("tab2").classList.add("_active");
+        document.getElementById("tab1_a").classList.remove("_active");
+        document.getElementById("tab2_a").classList.add("_active");
+    }
+
+    localStorage.removeItem('modal_id')
+
+    function saveUrl(id)
+    {
+        localStorage.setItem('modal_id', id);
+    }
+
+    function removeAnswer(t)
+    {
+        t.parentNode.parentNode.remove()
+    }
+    function addAnswer(x)
+    {
+        let matched = $(".answer_0 .course-create__test-variant");
+        let count  = x.toString() + ++matched.length
+        $('.answer_' + x).append(`<div class="course-create__test-variant">
+                                        <label class="course-create__input input">
+                                            <input type="text" placeholder="Введите текст" name="a_name[${count}]">
+                                            <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
+                                        </label>
+                                        <label class="course-create__test-checkbox">
+                                            <input type="checkbox" name="a_status[${count}]">
+                                            <span></span>
+                                        </label>
+                                    </div>`)
+    }
+
+    function addQuest()
+    {
+        let count = $('.answ_quests .course-create__test').length
+        $('.answ_quests').append(`<div class="course-create__test">
+                            <div class="course-create__test-item">
+                                <div class="course-create__label _number"><span>${++count}</span> Вопрос</div>
+                                <div class="course-create__row _small">
+                                    <label class="course-create__input textarea input">
+                                        <textarea placeholder="Введите текст" name="q_name[${count}]"></textarea>
+                                    </label>
+                                </div>
+
+                                <div class="course-create__row answer_${count}">
+                                    <div class="course-create__label">
+                                        <span>Варианты ответа</span> <span>Правильный ответ</span>
+                                    </div>
+                                    <div class="course-create__test-variant">
+                                        <label class="course-create__input input">
+                                            <input type="text" placeholder="Введите текст" name="a_name[${count + count.toString()}]">
+                                            <button type="button" onclick="removeAnswer(this)" class="course-create__input-close"></button>
+                                        </label>
+                                        <label class="course-create__test-checkbox">
+                                            <input type="checkbox" name="a_status[${count + count.toString()}]">
+                                            <span></span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <button type="button" class="btn-white" onclick="addAnswer(${count})">
+                                    Добавить вариант ответа
+                                </button>
+                            </div>
+                        </div>`)
+
+    }
+</script>
 @endsection

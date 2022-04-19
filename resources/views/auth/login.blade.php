@@ -23,18 +23,25 @@
                         <form action="{{ route('login') }}" class="login__form _login" method="POST">
                             @csrf
                             <h2 class="login__title title-block">Вход в кабинет</h2>
-                            <label class="login__input input">
-                                <input type="text" placeholder="E-mail" class="@error('email') is-invalid @enderror" name="email">
+                            <label class="login__input input ">
+                                <input type="text" placeholder="E-mail" class="@error('email')is-invalid @enderror" value="{{ old('email') }}" name="email">
                             </label>
                             @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
+                            <p></p>
+                            <p></p>
+
                             <label class="login__input input">
-                                <input type="password" placeholder="Пароль" class="@error('password') is-invalid @enderror" name="password">
+                                <input type="password" placeholder="Пароль" class="@error('password')is-invalid @enderror" name="password">
                                 <span class="password-toggle"><img src="img/icons/eye.svg" alt=""></span>
                             </label>
                             @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                             <button type="submit" class="login__btn btn-blue _cabinet-btn">Войти</button>
                             <a href="{{ route('password.request') }}" class="login__link text">Забыли пароль?</a>
