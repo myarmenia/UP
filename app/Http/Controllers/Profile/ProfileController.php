@@ -74,6 +74,7 @@ class ProfileController extends Controller
             }
         }
         $data = User::where('id', Auth::user()->id)->update($update);
+        return redirect()->back();
     }
 
     public function updatePassword(Request $request){
@@ -85,7 +86,7 @@ class ProfileController extends Controller
         if ($validator->fails()){
             return response()->json(['errors'=>$validator->errors()], 404);
         }
-       
+
         $hashedPassword = Auth::user()->password;
 
         if (Hash::check($request->old_password , $hashedPassword )) {
